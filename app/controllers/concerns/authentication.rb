@@ -13,7 +13,7 @@ module Authentication
 
     def unauthenticated_access_only(**options)
       allow_unauthenticated_access **options
-      before_action -> { redirect_to dashboard_path(6) if authenticated? }, **options
+      before_action -> { redirect_to dashboard_path if authenticated? }, **options
     end
   end
 

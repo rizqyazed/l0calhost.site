@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :sites
 
   root "pages#home"
-  get "dashboard/:id", to: "pages#dashboard", as: :dashboard
+  get "dashboard", to: "pages#dashboard", as: :dashboard
   get "directory", to: "pages#directory", as: :directory
 end

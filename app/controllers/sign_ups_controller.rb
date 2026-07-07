@@ -6,7 +6,7 @@ class SignUpsController < ApplicationController
     @user = User.new(sign_up_params)
     if @user.save!
       start_new_session_for(@user)
-      redirect_to dashboard_path(6)
+      redirect_to dashboard_path
     else
       render "pages/home", status: :unprocessable_entity
     end

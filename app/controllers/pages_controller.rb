@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @site = Site.find(params[:id])
+    @site = Current.user.site
   end
 
   def directory
