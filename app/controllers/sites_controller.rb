@@ -9,10 +9,21 @@ class SitesController < ApplicationController
       end
    end
 
-   def destroy
+  def update
+    @site = Site.find(params[:id])
+
+    if @site.update(site_params)
+      flash[:notice] = "Site updated successfully!"
+      redirect_to dashboards_path(@site)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
        Site.find(params[:id]).destroy
        redirect_to root_path
-   end
+  end
 
    private
    def site_params

@@ -1,4 +1,3 @@
-<h1>create a site</h1>
 <%= form_with(model: @site) do |form| %>
  <div>
    <%= form.label :title %>
@@ -16,13 +15,3 @@
    <%= form.submit %>
  </div>
 <% end %>
-
-<h1>people's website</h1>
-<div>
- <% @sites.each do |site| %>
-   <%= site.title %>
-   <%= site.subdomain %>
-   <%= button_to "Delete", site, method: :delete %>
-   <%= link_to dashboards_path(site) %>
- <% end %>
-</div>
