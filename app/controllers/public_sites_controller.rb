@@ -1,4 +1,6 @@
 class PublicSitesController < ApplicationController
+  allow_unauthenticated_access
+
   def show
     @site = Site.find_by!(subdomain: request.subdomain)
 
