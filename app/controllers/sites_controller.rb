@@ -2,7 +2,8 @@ class SitesController < ApplicationController
    def create
       @site = Site.new(site_params)
       if @site.save
-          redirect_to root_path
+          CompileSiteJob.perform_later(@site.id)
+          redirect_to root_path, notice: "Your site is being compiled! Check back in a few seconds."
       else
           render :new
       end
