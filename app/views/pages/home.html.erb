@@ -1,6 +1,11 @@
-<h1 class="text-red-50">Sign Up</h1>
+<%= link_to "log in", new_session_path%>
+
+<%= link_to "directory", directory_path%>
+
+<h1 class="">sign up</h1>
 
 <%= form_with(model: @user, url: sign_up_path) do |form| %>
+
   <% if form.object.errors.any? %>
     <div>Error: <%= form.object.errors.full_messages.first %></div>
   <% end %>

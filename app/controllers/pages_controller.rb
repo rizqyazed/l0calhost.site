@@ -11,6 +11,6 @@ class PagesController < ApplicationController
   end
 
   def directory
-    @sites = Site.all
+    @users = User.all
   end
 end

@@ -1,7 +1,6 @@
 <h1>people's website</h1>
 <div>
- <% @sites.each do |site| %>
-   <%= site.title %>
-   <%= site.subdomain %>
+ <% @users.each do |user| %>
+    <%= link_to "#{user.username}.#{request.host_with_port}", root_url(subdomain: user.username) %> 
  <% end %>
 </div>
