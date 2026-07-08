@@ -1,28 +1,28 @@
-<h1>create a site</h1>
-<%= form_with(model: @site) do |form| %>
- <div>
-   <%= form.label :title %>
-   <%= form.text_field :title %>
- </div>
- <div>
-   <%= form.label :description %>
-   <%= form.text_field :description %>
- </div>
- <div>
-   <%= form.label :subdomain %>
-   <%= form.text_field :subdomain %>
- </div>
- <div>
-   <%= form.submit %>
- </div>
+<h1>Sign Up</h1>
+
+<%= form_with(model: @user, url: sign_up_path) do |form| %>
+  <% if form.object.errors.any? %>
+    <div>Error: <%= form.object.errors.full_messages.first %></div>
+  <% end %>
+
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username, required: true, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div>
+    <%= form.label :email_address %>
+    <%= form.email_field :email_address, required: true, autocomplete: "email" %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true, autocomplete: "new-password" %>
+  </div>
+
+  <div>
+    <%= form.submit "create website" %>
+  </div>
 <% end %>
 
-<h1>people's website</h1>
-<div>
- <% @sites.each do |site| %>
-   <%= site.title %>
-   <%= site.subdomain %>
-   <%= button_to "Delete", site, method: :delete %>
-   <%= link_to dashboards_path(site) %>
- <% end %>
-</div>
+

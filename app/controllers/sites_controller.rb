@@ -15,7 +15,7 @@ class SitesController < ApplicationController
 
     if @site.update(site_params)
       flash[:notice] = "Site updated successfully!"
-      redirect_to dashboards_path(@site)
+      redirect_to dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
