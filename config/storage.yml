@@ -8,11 +8,11 @@ local:
 
 railway:
   service: S3
-  endpoint: <%= ENV.fetch("ENDPOINT", "") %>
-  access_key_id: <%= ENV.fetch("ACCESS_KEY_ID", "") %>
-  secret_access_key: <%= ENV.fetch("SECRET_ACCESS_KEY", "") %>
-  region: <%= ENV.fetch("REGION", "") %>
-  bucket: <%= ENV.fetch("BUCKET", "") %>
+  endpoint: <%= ENV.fetch("AWS_ENDPOINT", "") %>
+  access_key_id: <%= ENV.fetch("AWS_ACCESS_KEY_ID", "") %>
+  secret_access_key: <%= ENV.fetch("AWS_SECRET_ACCESS_KEY", "") %>
+  region: <%= ENV.fetch("AWS_REGION", "") %>
+  bucket: <%= ENV.fetch("AWS_BUCKET", "") %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
