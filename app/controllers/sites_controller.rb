@@ -71,7 +71,22 @@ class SitesController < ApplicationController
         block.body = file.read
       when ".jpg", ".jpeg", ".png", ".gif"
         block.block_type = "image"
-        block.media_file.attach(file)
+
+        compressed_file = ImageProcessing::Vips
+          .source(file.path)
+          .resize_to_limit(1200, 1200)
+          .saver(quality: 80)
+          .convert("webp")
+          .call
+
+        original_name_without_extension = File.basename(filename, File.extname(filename))
+        new_filename = "#{original_name_without_extension}.webp"
+
+        block.media_file.attach(
+          io: compressed_file,
+          filename: new_filename,
+          content_type: "image/webp"
+        )
       when ".mp3", ".wav"
         block.block_type = "audio"
         block.media_file.attach(file)
