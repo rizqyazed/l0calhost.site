@@ -9,3 +9,23 @@
 
 /* 4. Import the Utility classes (flex, p-4, bg-blue-500, etc.) */
 @import "tailwindcss/utilities.css" layer(utilities);
+
+@layer base {
+  /* Target text-based inputs and textareas */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+    @apply block w-full border bg-white text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+  }
+
+  /* You can target checkboxes and radios separately */
+  /* input[type="checkbox"],
+  input[type="radio"] {
+    @apply h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500;
+  } */
+}

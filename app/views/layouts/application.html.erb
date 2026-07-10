@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "L0calhost" %></title>
+    <title><%= content_for(:title) || "l0calhost" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="L0calhost">
@@ -23,11 +23,40 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <nav>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+  <body class="overflow-hidden">
+    <nav class="absolute w-full">
+      <%= link_to "directory", directory_path unless current_page?(directory_path)%>
+      <%= button_to "log out", session_path, method: :delete, class: "absolute top-0 right-4" if authenticated? %>
+      <%= link_to "log in", new_session_path, class: "absolute top-0 right-4" if not authenticated? unless current_page?(root_path)%>
     </nav>
-
-    <%= yield %>
+    <div class="flex flex-row justify-center items-center h-screen ">
+      <header class="flex-1 text-center sticky">
+        <p class="m-0">
+          <%= status_screen_text %>
+        </p>
+        <pre class="m-0">
+____________________
+|  |              |  |
+|[]|              |[]|
+|  |              |  |
+|  |              |  |
+|  |              |  |
+|  |______________|  |
+|                    |
+|     ____________   |
+|    | __      |  |  |
+|    ||  |     |  |  |
+|    ||__|     |  |  |
+.____|_________|__|__|
+        </pre>
+        <p class="m-0">
+          <%= link_to "<-- back", root_path unless current_page?(dashboard_path) || current_page?(root_path) %>
+          <%= link_to "settings", root_path if current_page?(dashboard_path) %>
+        </p>
+      </header>
+      <main data-controller="friend directory" class="flex-2 flex flex-row">
+          <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

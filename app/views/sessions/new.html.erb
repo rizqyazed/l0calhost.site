@@ -1,11 +1,21 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<%# <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%# <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<% content_for :screen_text, "welcome back!" %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
+<section class="border max-w-[470px] h-[315px] p-[1rem] overflow-hidden">
+<%= form_with url: session_path, class: "flex flex-col h-full justify-between" do |form| %>
+  <div class="w-[65%]"> 
+    <%= form.label "email address", :email_address%>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "email address", value: params[:email_address] %><br>
+    <%= form.label "password", :password%>
+    <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "your password", maxlength: 72 %><br>
+  </div>
+  <div class="flex flex-row justify-between">
+    <%= link_to "i forgot my password :(", new_password_path %>
+    <%= form.submit "sign in" %>
+  </div>
+  
 <% end %>
 <br>
 
-<%= link_to "Forgot password?", new_password_path %>
+</section>

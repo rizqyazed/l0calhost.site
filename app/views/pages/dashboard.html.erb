@@ -1,20 +1,26 @@
-<%= form_with(model: @site) do |form| %>
- <div>
-   <%= form.label :title %>
-   <%= form.text_field :title %>
- </div>
- <div>
-   <%= form.label :description %>
-   <%= form.text_field :description %>
- </div>
- <div class="p-6 bg-gray-50 border rounded-lg shadow">
-    <h2 class="text-xl font-bold mb-4">Upload Site Content</h2>
-    <p class="text-sm text-gray-500 mb-4">Select a folder containing your numbered files (e.g., 1.png, 2.txt, 3.mp4).</p>
-    
-    <%# The magic attributes here are multiple, webkitdirectory, and directory %>
-    <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
-  </div>
- <div>
-   <%= form.submit %>
- </div>
-<% end %>
+<% content_for :screen_text, "dashboard" %>
+
+<div>
+  <%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username) %>
+  <section class="border w-[740px] h-full p-[1rem] overflow-hidden"">
+      <%= form_with(model: @site) do |form| %>
+        <div class="w-[50%]">
+            <div>
+              <%= form.label "site_title", :title %>
+              <%= form.text_field :title %>
+            </div>
+            <div>
+              <%= form.label "site_summary", :description %>
+              <%= form.text_field :description %>
+            </div>
+            <div class="">
+                <%= form.label "site_content", :folder_upload %>
+                <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
+            </div>
+        <div>
+        </div>
+          <%= form.submit %>
+        </div>
+      <% end %>
+  </section>
+</div>
