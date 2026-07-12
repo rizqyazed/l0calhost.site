@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-[125%]">
   <head>
     <title><%= content_for(:title) || "l0calhost" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,14 +23,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="overflow-hidden">
-    <nav class="absolute w-full">
+  <body class="md:overflow-hidden">
+    <nav class="sticky w-full flex flex-row">
       <%= link_to "directory", directory_path unless current_page?(directory_path) %>
-      <%= button_to "log_out", session_path, method: :delete, class: "absolute top-0 right-4 " if authenticated? %>
-      <%= link_to "log_in", new_session_path, class: "absolute top-0 right-4 " if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) %>
+      <div class="ml-auto flex flex-row gap-">
+        <%= button_to "log_out", session_path, method: :delete if authenticated? %>
+        <%= link_to "log_in", new_session_path if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) %>
+    </div>
     </nav>
-    <div class="flex flex-row justify-center items-center h-screen ">
-      <header class="flex-1 text-center sticky">
+    <div class="flex flex-col justify-center mt-[5rem] gap-[5rem] items-center md:mt-0 md:flex-row md:h-screen md:gap-0 ">
+      <header class="flex-1 text-center md:sticky">
         <h1 class="m-0 text-xl font-normal">
           <%= status_screen_text %>
         </h1>
@@ -54,7 +56,7 @@ ____________________
           <%= link_to "settings", root_path if current_page?(dashboard_path) %>
         </p>
       </header>
-      <main class="flex-2">
+      <main class="flex-2 w-full">
           <%= yield %>
       </main>
     </div>

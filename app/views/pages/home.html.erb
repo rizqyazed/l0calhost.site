@@ -1,7 +1,7 @@
 <% content_for :screen_text, "l0calhost.site" %>
 
-<div data-controller="friend" class="flex flex-row">
-  <section class="border max-w-[470px] h-[315px] p-[1rem] overflow-hidden">
+<div data-controller="friend" class="flex flex-col w-full md:flex-row gap-4">
+  <section class="border h-[315px] p-[1rem] overflow-hidden md:w-[40%]">
     <%= form_with(model: @user, url: sign_up_path, class: "flex flex-col justify-between h-full") do |form| %>
       <% if form.object.errors.any? %>
         <div>error: <%= form.object.errors.full_messages.first %></div>
@@ -43,7 +43,7 @@
       </div>
     <% end %>
   </section>
-  <aside class="p-[1rem] w-[40%]">
+  <aside class="p-[1rem] w-full md:w-[40%] shrink-0">
     <p data-friend-target="output" class="text-lg">hello! l0calhost.site is a lightweight site builder. it allows you to create single page html for a blog...</p>
   </aside>
 </div>

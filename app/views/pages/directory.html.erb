@@ -1,7 +1,7 @@
 <% content_for :screen_text, "directory" %>
 
-<div data-controller="directory" class="flex flex-row">
-    <section class="flex flex-col gap-20 w-[30%]">
+<div data-controller="directory" class="flex flex-col text-center md:text-left md:flex-row">
+    <section class="flex flex-col gap-20 w-full md:w-[30%]">
     <% @users.each do |user| %>
         <%= link_to "#{user.username}.#{request.host_with_port}", root_url(subdomain: user.username), 
             data: {
