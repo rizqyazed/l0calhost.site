@@ -23,6 +23,10 @@
     @apply block w-full border bg-white text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
   }
 
+  button {
+    @apply underline text-blue-600 hover:text-blue-600 bg-transparent border-none p-0 cursor-pointer font-serif;
+  }
+
   /* You can target checkboxes and radios separately */
   /* input[type="checkbox"],
   input[type="radio"] {

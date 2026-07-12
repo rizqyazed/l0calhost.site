@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= content_for(:title) || "l0calhost" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -25,15 +25,15 @@
 
   <body class="overflow-hidden">
     <nav class="absolute w-full">
-      <%= link_to "directory", directory_path unless current_page?(directory_path)%>
-      <%= button_to "log out", session_path, method: :delete, class: "absolute top-0 right-4" if authenticated? %>
-      <%= link_to "log in", new_session_path, class: "absolute top-0 right-4" if not authenticated? unless current_page?(root_path)%>
+      <%= link_to "directory", directory_path unless current_page?(directory_path) %>
+      <%= button_to "log_out", session_path, method: :delete, class: "absolute top-0 right-4 " if authenticated? %>
+      <%= link_to "log_in", new_session_path, class: "absolute top-0 right-4 " if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) %>
     </nav>
     <div class="flex flex-row justify-center items-center h-screen ">
       <header class="flex-1 text-center sticky">
-        <p class="m-0">
+        <h1 class="m-0 text-xl font-normal">
           <%= status_screen_text %>
-        </p>
+        </h1>
         <pre class="m-0">
 ____________________
 |  |              |  |
@@ -54,7 +54,7 @@ ____________________
           <%= link_to "settings", root_path if current_page?(dashboard_path) %>
         </p>
       </header>
-      <main data-controller="friend directory" class="flex-2 flex flex-row">
+      <main class="flex-2">
           <%= yield %>
       </main>
     </div>

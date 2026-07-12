@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @site = Current.user.site
+    @content_blocks = @site.content_blocks.order(:position)
   end
 
   def directory

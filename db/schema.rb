@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_09_115551) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_12_171757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_09_115551) do
   create_table "content_blocks", force: :cascade do |t|
     t.string "block_type"
     t.datetime "created_at", null: false
+    t.integer "position"
     t.bigint "site_id", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_content_blocks_on_site_id"

@@ -1,14 +1,18 @@
 <% content_for :screen_text, "directory" %>
 
-<div class="flex flex-col gap-20">
- <% @users.each do |user| %>
-    <%= link_to "#{user.username}.#{request.host_with_port}", root_url(subdomain: user.username), 
-        data: {
-        action: "mouseenter->directory#show mouseleave->directory#clear",
-        directory_info_param: user.site.description || "this website has no description yet :(" 
-    } %> 
- <% end %>
+<div data-controller="directory" class="flex flex-row">
+    <section class="flex flex-col gap-20 w-[30%]">
+    <% @users.each do |user| %>
+        <%= link_to "#{user.username}.#{request.host_with_port}", root_url(subdomain: user.username), 
+            data: {
+            action: "mouseenter->directory#show mouseleave->directory#clear",
+            directory_title_param: user.site&.title || "untitled Website",
+            directory_desc_param: user.site&.description || "this website has no description yet."
+        } %> 
+    <% end %>
+    </section>
+    <aside class="p-[1rem] w-[40%]">
+        <p data-directory-target="title"></p>
+        <p data-directory-target="desc"></p>
+    </aside>
 </div>
-<aside class="p-[1rem] w-[40%]">
-  <p data-friend-target="website"></p>
-</aside>

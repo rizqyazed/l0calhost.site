@@ -5,9 +5,9 @@
 <section class="border max-w-[470px] h-[315px] p-[1rem] overflow-hidden">
 <%= form_with url: session_path, class: "flex flex-col h-full justify-between" do |form| %>
   <div class="w-[65%]"> 
-    <%= form.label "email address", :email_address%>
+    <%= form.label :email_address, "email"%>
     <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "email address", value: params[:email_address] %><br>
-    <%= form.label "password", :password%>
+    <%= form.label :password, "password"%>
     <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "your password", maxlength: 72 %><br>
   </div>
   <div class="flex flex-row justify-between">

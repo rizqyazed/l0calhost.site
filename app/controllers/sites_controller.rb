@@ -23,7 +23,7 @@ class SitesController < ApplicationController
     end
 
     if @site.update(site_params)
-      flash[:notice] = "Site updated successfully!"
+      flash[:notice] = "site updated successfully!"
       redirect_to dashboard_path
     else
       render dashboard_path, status: :unprocessable_entity
@@ -68,7 +68,7 @@ class SitesController < ApplicationController
       when ".txt"
         block.block_type = "text"
         # Physically read the text inside the file and save it as the body
-        block.body = file.read
+        block.media_file.attach(file)
       when ".jpg", ".jpeg", ".png", ".gif"
         block.block_type = "image"
 

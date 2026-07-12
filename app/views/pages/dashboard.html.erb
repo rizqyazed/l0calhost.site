@@ -1,26 +1,45 @@
 <% content_for :screen_text, "dashboard" %>
 
-<div>
-  <%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username) %>
-  <section class="border w-[740px] h-full p-[1rem] overflow-hidden"">
-      <%= form_with(model: @site) do |form| %>
-        <div class="w-[50%]">
-            <div>
-              <%= form.label "site_title", :title %>
-              <%= form.text_field :title %>
-            </div>
-            <div>
-              <%= form.label "site_summary", :description %>
-              <%= form.text_field :description %>
-            </div>
-            <div class="">
-                <%= form.label "site_content", :folder_upload %>
-                <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
-            </div>
-        <div>
-        </div>
-          <%= form.submit %>
-        </div>
-      <% end %>
-  </section>
-</div>
+<%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username) %>
+<section class="border w-[740px] p-[1rem] flex gap-3">
+    <%= form_with(model: @site, class:"flex-1 flex flex-col justify-between") do |form| %>
+      <div class="w-[75%]">
+          <div>
+            <%= form.label :title, "site_title" %>
+            <%= form.text_field :title %>
+          </div>
+          <div>
+            <%= form.label :description, "site_summary" %>
+            <%= form.text_field :description %>
+          </div>
+          <%= form.label :folder_upload, "site_content"%>
+          <div class="border">
+              <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-white hover:file:bg-blue-100" %>
+          </div>
+      </div>
+      <div class="flex justify-between">
+        <%= link_to "export", root_path %>
+        <%= form.submit "publish"%>
+      </div>
+    <% end %>
+    <div class="h-[540px] overflow-y-scroll flex-1">
+         <ol class="space-y-5">
+            <% @content_blocks.each do |block| %>
+              <li>
+                <% if block.media_file.attached? %>
+                    <% if block.media_file.content_type.start_with?("image/") %>
+                        <%= image_tag block.media_file, class: "max-w-full h-auto align-top" %>
+                    <% elsif block.media_file.content_type.start_with?("text/") %>
+                      <div class="align-top prose border p-5">
+                        <% safe_text = block.media_file.download.force_encoding('UTF-8').scrub  %>
+                          <%= truncate(safe_text, length: 40, separator: ' ') %>
+                      </div>
+                    <% end %>
+                <% else %>
+                  <p class="text-gray-500">nothing...</p>
+                <% end %>
+              </li>
+            <% end %>
+         </ol> 
+     </div>
+</section>

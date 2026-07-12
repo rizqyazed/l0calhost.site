@@ -1,18 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["website"];
+  static targets = ["title", "desc"];
 
   show(event) {
-    const siteInfo = event.params.info;
+    const title = event.params.title;
+    const desc = event.params.desc;
 
-    this.outputTarget.textContent = siteInfo;
+    this.titleTarget.textContent = title;
+    this.descTarget.textContent = desc;
 
-    this.outputTarget.classList.remove("italic");
+    this.titleTarget.classList.remove("italic");
+    this.descTarget.classList.remove("italic");
   }
 
   clear() {
-    this.outputTarget.textContent = " ";
-    this.outputTarget.classList.add("italic");
+    this.titleTarget.textContent = " ";
+    this.descTarget.textContent = " ";
+
+    this.titleTarget.classList.remove("italic");
+    this.descTarget.classList.remove("italic");
   }
 }
