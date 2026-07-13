@@ -18,12 +18,21 @@ class PublishSitesTest < ApplicationSystemTestCase
 
     dashboard.fill_basic_info("updated title", @site.description)
 
+    dashboard.upload_site("folder1")
+
+    take_screenshot
+
     dashboard.publish_site
 
     assert dashboard.has_published_message?
+    assert_selector "img", count: 2
 
     dashboard.view_live_site(@user.username)
 
+    take_screenshot
+
     assert_text "updated title"
+    assert_text "this image tells a story about when my world went upsite down"
+    assert_selector "img", count: 2
   end
 end

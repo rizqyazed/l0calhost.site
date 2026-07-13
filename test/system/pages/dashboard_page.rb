@@ -25,6 +25,12 @@ class DashboardPage
   end
 
   def has_published_message?
-    has_text?("site updated successfully!")
+    has_text?("site updated successfully!", wait: 10)
+  end
+
+  def upload_site(folder_name)
+    folder_path = Rails.root.join("test", "fixtures", "files", folder_name)
+
+    attach_file("site[folder_upload][]", folder_path.to_s)
   end
 end
