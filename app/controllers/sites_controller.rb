@@ -6,7 +6,7 @@ class SitesController < ApplicationController
           # redirect_to root_path, notice: "Your site is being compiled! Check back in a few seconds."
           redirect_to dashboard_path
       else
-          render dashboard_path
+          render dashboard_path, status: :unprocessable_entity
       end
    end
 

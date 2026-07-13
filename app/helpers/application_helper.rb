@@ -1,5 +1,9 @@
 module ApplicationHelper
-  def status_screen_text
+  def status_screen_text(model = nil)
+    if model && model.errors.any?
+      return model.errors.first.message
+    end
+
     if flash[:alert].present?
       return "#{flash[:alert]}"
     elsif flash[:notice].present?

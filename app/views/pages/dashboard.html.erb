@@ -13,7 +13,10 @@
             <%= form.text_field :description %>
           </div>
           <div>
-            <%= form.label :folder_upload, "site_content"%>
+            <div class="flex flex-row items-center gap-2">
+              <%= form.label :folder_upload, "site_content"%>
+              <p class="m-0">[i]</p>
+            </div>
               <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "border block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-white hover:file:bg-blue-100" %>
           </div>
       </div>

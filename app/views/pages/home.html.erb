@@ -3,9 +3,6 @@
 <div data-controller="friend" class="flex flex-col w-full md:flex-row gap-4">
   <section class="border h-[315px] p-[1rem] overflow-hidden md:w-[40%]">
     <%= form_with(model: @user, url: sign_up_path, class: "flex flex-col justify-between h-full") do |form| %>
-      <% if form.object.errors.any? %>
-        <div>error: <%= form.object.errors.full_messages.first %></div>
-      <% end %>
       <div class="flex flex-col gap-8">
         <div class="flex flex-col gap-0 w-[75%]">
           <%= form.label :username, "username" %>
@@ -13,7 +10,7 @@
             <%= form.text_field :username, required: true,placeholder: "my-site-name", autocomplete: "username", 
               data: { 
                 action: "focus->friend#show blur->friend#clear",
-                friend_message_param: "your username will determine the url of your website!  THIS CANT BE CHANGED LATER so be wise ;)"
+                friend_message_param: "your username will determine the url of your website! THIS CANT BE CHANGED LATER so be wise ;)"
               } %>
             <p class="m-0">.l0calhost.site</p>
           </div>
@@ -21,7 +18,7 @@
 
         <div class="flex flex-row gap-3">
           <div class="flex flex-col">
-            <%= form.label  :email_address, "email" %>
+            <%= form.label :email_address, "email" %>
             <%= form.email_field :email_address, required: true, autocomplete: "email", placeholder: "me@example.com", data: { 
                 action: "focus->friend#show blur->friend#clear",
                 friend_message_param: "classic email input field :)"
@@ -37,6 +34,9 @@
           </div>
         </div>
       </div>
+      <% if form.object.errors.any? %>
+        <div>error: <%= form.object.errors.first.message %></div>
+      <% end %>
       <div class="flex justify-between">
         <%= link_to "log_in", new_session_path%>
         <%= form.submit "create website" %>
@@ -44,6 +44,6 @@
     <% end %>
   </section>
   <aside class="p-[1rem] w-full md:w-[40%] shrink-0">
-    <p data-friend-target="output" class="text-lg">hello! l0calhost.site is a lightweight site builder. it allows you to create single page html for a blog...</p>
+    <p data-friend-target="output" class="text-lg">hello!<br>l0calhost.site is a lightweight site builder.<br> create an account and claim your corner of the internet!</p>
   </aside>
 </div>
