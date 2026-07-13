@@ -1,29 +1,58 @@
 <%# app/views/exports/portfolio.html.erb %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title><%= @site.title %></title>
   <meta name="description" content="<%= @site.description %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      body {
+        padding: 1rem;
+        font-family: sans-serif;
+      }
+
+      h1 {
+        font-size:large;
+        font-weight: normal;
+      }
+
+      main {
+        max-width: 550px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      .summary {
+        opacity: 60%;
+      }
+
+      .content-block {
+        margin: 2rem 0 2rem 0;
+      }
+  </style>
 </head>
 <body>
+  <main>
   <h1><%= @site.title %></h1>
-  <p><%= @site.description %></p>
-
-  <% @site.content_blocks.each do |content_block| %>
+  <p class="summary"><%= @site.description %></p>
+  <% @site.content_blocks.order(:position).each do |content_block| %>
     <% case content_block.block_type %>
     <% when "text" %>
-      <div>
-        <%= content_block.body %>
+      <div class="content-block">
+        <%= content_block.media_file.download.force_encoding('UTF-8').scrub %>
       </div>
     <% when "image" %>
       <% if content_block.media_file.attached? %>
-        <div>
+        <div class="content-block">
           <%= image_tag content_block.media_file %>
         </div>
       <% end %>
     <% when "audio" %>
       <% if content_block.media_file.attached? %>
-        <div>
+        <div class="content-block">
           <audio controls>
             <source src="<%= url_for(content_block.media_file) %>">
           </audio>
@@ -31,7 +60,7 @@
       <% end %>
     <% when "video" %>
       <% if content_block.media_file.attached? %>
-        <div>
+        <div class="content-block">
           <video controls>
             <source src="<%= url_for(content_block.media_file) %>">
           </video>
@@ -39,6 +68,6 @@
       <% end %>
     <% end %>
   <% end %>
-
+  </main>
 </body>
 </html>

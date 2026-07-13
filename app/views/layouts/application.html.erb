@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="text-[125%]">
   <head>
-    <title><%= content_for(:title) || "L0calhost" %></title>
+    <title><%= content_for(:title) || "l0calhost" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="L0calhost">
@@ -23,11 +23,42 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <nav>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+  <body class="md:overflow-hidden">
+    <nav class="sticky w-full flex flex-row">
+      <%= link_to "directory", directory_path unless current_page?(directory_path) %>
+      <div class="ml-auto flex flex-row gap-">
+        <%= button_to "log_out", session_path, method: :delete if authenticated? %>
+        <%= link_to "log_in", new_session_path if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) %>
+    </div>
     </nav>
-
-    <%= yield %>
+    <div class="flex flex-col justify-center mt-[5rem] gap-[5rem] items-center md:mt-0 md:flex-row md:h-screen md:gap-0 ">
+      <header class="flex-1 text-center md:sticky">
+        <h1 class="m-0 text-xl font-normal">
+          <%= status_screen_text(@site || @content_block) %>
+        </h1>
+        <pre class="m-0">
+____________________
+|  |              |  |
+|[]|              |[]|
+|  |              |  |
+|  |              |  |
+|  |              |  |
+|  |______________|  |
+|                    |
+|     ____________   |
+|    | __      |  |  |
+|    ||  |     |  |  |
+|    ||__|     |  |  |
+.____|_________|__|__|
+        </pre>
+        <p class="m-0">
+          <%= link_to "<-- back", root_path unless current_page?(dashboard_path) || current_page?(root_path) %>
+          <%= link_to "settings", root_path if current_page?(dashboard_path) %>
+        </p>
+      </header>
+      <main class="flex-2 w-full">
+          <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

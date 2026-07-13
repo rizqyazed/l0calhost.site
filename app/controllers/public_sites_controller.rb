@@ -5,6 +5,6 @@ class PublicSitesController < ApplicationController
     @site = User.find_by!(username: request.subdomain).site
 
     # note for future self. can use @site.theme here to access different themes/layout for user.
-    render layout: "theme1"
+    render layout: "layout1"
   end
 end
