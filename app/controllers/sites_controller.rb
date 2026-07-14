@@ -35,6 +35,45 @@ class SitesController < ApplicationController
        redirect_to root_path
   end
 
+  def export
+    @site = Site.find(params[:id])
+    @content_blocks = @site.content_blocks.order(:position)
+
+    # 1. Generate the HTML string using your exact layouts
+    html_content = render_to_string(
+      template: "public_sites/show", # Update with your actual view path
+      layout: "templates/#{@site.layout_choice}",
+      assigns: { site: @site, content_blocks: @content_blocks },
+      locals: { is_export: true }
+    )
+
+    # 2. Create a Zip file in memory
+    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+      # A. Add the HTML file to the zip
+      zos.put_next_entry("index.html")
+      zos.print html_content
+
+      # B. Loop through your blocks and add the attached media files
+      @content_blocks.each do |block|
+        if block.media_file.attached?
+          filename = block.media_file.filename.to_s
+
+          # Put the files in an 'assets' folder inside the zip
+          zos.put_next_entry("assets/#{filename}")
+
+          # Download the file from ActiveStorage and write it to the zip
+          zos.print block.media_file.download
+        end
+      end
+    end
+
+    # 3. Send the zip file to the user's browser
+    compressed_filestream.rewind
+    send_data compressed_filestream.read,
+              filename: "#{@site.title.parameterize}-export.zip",
+              type: "application/zip"
+  end
+
   private
 
   def site_params

@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resource :sign_up
   resource :session
   resources :passwords, param: :token
-  resources :sites
+  resources :sites do
+    member do
+      get :export
+  end
+  end
 
   root "pages#home"
   get "dashboard", to: "pages#dashboard", as: :dashboard
