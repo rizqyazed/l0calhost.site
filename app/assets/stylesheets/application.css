@@ -40,6 +40,10 @@ trix-toolbar .trix-button {
   background-color: white;
 }
 
+trix-toolbar .trix-button-group {
+  border-radius: 0px;
+}
+
 trix-toolbar .trix-button.trix-active {
   background-color: #f3f4f6; /* Highlight active buttons (like Bold) */
 }

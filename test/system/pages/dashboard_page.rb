@@ -8,7 +8,7 @@ class DashboardPage
 
   def fill_basic_info(title, summary)
     fill_in "site_title", with: title
-    fill_in "site_description", with: summary
+    find("#rich_description", visible: false).set(summary)
   end
 
   def has_basic_info?(expected_title, expected_summary)
