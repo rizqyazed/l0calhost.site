@@ -1,6 +1,6 @@
 <% content_for :screen_text, "dashboard" %>
 
-<%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username), class:"text-lg" %>
+<%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username), class:"text-lg", id:"user-site" %>
 <section class="border p-[1rem] flex flex-col mt-2 h-[740px] justify-start md:flex-row gap-3 md:w-[740px] md:h-auto">
     <%= form_with(model: @site, class:"md:flex-1 flex flex-col md:justify-between") do |form| %>
       <div class="w-[75%] flex flex-col gap-4">

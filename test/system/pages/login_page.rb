@@ -12,6 +12,6 @@ class LoginPage
   end
 
   def log_in
-    click_button "sign in"
+    click_button("sign in", wait: 10)
   end
 end

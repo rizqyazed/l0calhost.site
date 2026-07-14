@@ -10,7 +10,7 @@
     <%= form.label :password, "password"%>
     <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "your password", maxlength: 72 %><br>
   </div>
-  <div><%= @login_error %></div>
+  <div><%= flash[:alert] %></div>
   <div class="flex flex-row justify-between">
     <%= link_to "i forgot my password :(", new_password_path %>
     <%= form.submit "sign in" %>

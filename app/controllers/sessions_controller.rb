@@ -10,9 +10,9 @@ class SessionsController < ApplicationController
       start_new_session_for user
       redirect_to dashboard_path
     else
-      @login_error = "error: try another email address or password."
+      flash[:alert] = "error: try another email address or password."
 
-      render :new, status: :unprocessable_entity
+      redirect_to new_session_path, status: :found
     end
   end
 
