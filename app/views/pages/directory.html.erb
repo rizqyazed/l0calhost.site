@@ -7,7 +7,7 @@
             data: {
             action: "mouseenter->directory#show mouseleave->directory#clear",
             directory_title_param: user.site&.title || "untitled Website",
-            directory_desc_param: user.site&.description || "this website has no description yet."
+            directory_desc_param: user.site&.description.to_s || "this website has no description yet."
         } %> 
     <% end %>
     </section>

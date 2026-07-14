@@ -8,7 +8,7 @@ export default class extends Controller {
     const desc = event.params.desc;
 
     this.titleTarget.textContent = title;
-    this.descTarget.textContent = desc;
+    this.descTarget.innerHTML = desc;
 
     this.titleTarget.classList.remove("italic");
     this.descTarget.classList.remove("italic");
@@ -16,7 +16,7 @@ export default class extends Controller {
 
   clear() {
     this.titleTarget.textContent = " ";
-    this.descTarget.textContent = " ";
+    this.descTarget.innerHTML = " ";
 
     this.titleTarget.classList.remove("italic");
     this.descTarget.classList.remove("italic");

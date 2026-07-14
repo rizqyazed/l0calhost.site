@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="text-[125%]">
+<html lang="en" class="text-[120%]">
   <head>
     <title><%= content_for(:title) || "l0calhost" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -28,10 +28,12 @@
     <nav class="absolute top-0 right-0 left-0 w-90% flex flex-row p-2">
 
       <%= link_to "directory", directory_path unless current_page?(directory_path) %>
+      <%= link_to "<-- back", root_path unless current_page?(dashboard_path) || current_page?(root_path) || current_page?(new_session_path)%>
 
       <div class="flex flex-row ml-auto">
         <%= link_to "log_out", session_path, data: { turbo_method: :delete } if authenticated? %>
-        <%= link_to "log_in", new_session_path if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) %>
+        <%= link_to "log_in", new_session_path if not authenticated? unless current_page?(root_path) || current_page?(new_session_path) || current_page?(directory_path) %>
+        <%= link_to "create a website", root_path if not authenticated? unless current_page?(root_path) || current_page?(directory_path) %>
       </div>
 
     </nav>
@@ -56,7 +58,6 @@ ____________________
 .____|_________|__|__|
         </pre>
         <p class="m-0">
-          <%= link_to "<-- back", root_path unless current_page?(dashboard_path) || current_page?(root_path) %>
           <%= link_to "settings", root_path if current_page?(dashboard_path) %>
         </p>
       </header>

@@ -19,14 +19,23 @@
   input[type="search"],
   input[type="tel"],
   input[type="url"],
+  input[type="file"],
+  select,
   textarea {
-    @apply block w-full border bg-white text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+    @apply block font-serif w-full border bg-[#FFFBF1] text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+  }
+
+  input[type="submit"] {
+    @apply block font-serif border bg-[#FFFBF1] text-sm p-1 px-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
   }
 
   button {
     @apply inline align-baseline m-0 underline text-sm bg-transparent border-none p-0 cursor-pointer font-serif text-[#0000EE] hover:text-[#551A8B] active:text-[#FF0000];
   }
 
+  a {
+    @apply text-black hover:text-black active:text-black visited:text-black;
+  }
   /* You can target checkboxes and radios separately */
   /* input[type="checkbox"],
   input[type="radio"] {

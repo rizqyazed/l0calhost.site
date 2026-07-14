@@ -8,10 +8,10 @@ export default class extends Controller {
   }
 
   show(event) {
-    this.outputTarget.textContent = event.params.message;
+    this.outputTarget.innerHTML = event.params.message;
   }
 
   clear() {
-    this.outputTarget.textContent = this.defaultText;
+    this.outputTarget.innterHTML = this.defaultText;
   }
 }

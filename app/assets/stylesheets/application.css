@@ -8,3 +8,50 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* 1. The main typing area */
+trix-editor {
+  min-height: 150px;
+  border: 1px solid #6e7074;
+  background-color: #fffbf1;
+  font-family: inherit;
+  margin-top: 0;
+  border-radius: 0;
+}
+
+/* Optional: Change the border color when the user clicks into the box */
+trix-editor:focus {
+  outline: none;
+  border-color: #3b82f6; /* Tailwind blue-500 */
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+trix-toolbar .trix-button-row {
+  margin-bottom: 0;
+}
+
+/* 2. The Toolbar */
+trix-toolbar {
+  margin-bottom: 0;
+}
+
+/* 3. The Toolbar Buttons */
+trix-toolbar .trix-button {
+  background-color: white;
+}
+
+trix-toolbar .trix-button.trix-active {
+  background-color: #f3f4f6; /* Highlight active buttons (like Bold) */
+}
+
+/* 4. Hide buttons you don't want (e.g., File Attachments) */
+/* If you only want users using your custom folder uploader, hide Trix's default one! */
+trix-toolbar .trix-button-group--file-tools,
+trix-toolbar .trix-button-group--block-tools,
+trix-toolbar .trix-button-group--history-tools {
+  display: none !important;
+}
+
+body {
+  background-color: #fffbf1;
+}

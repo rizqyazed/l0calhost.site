@@ -9,6 +9,23 @@
         padding: 1rem;
         font-family: var(--font-family);
         background-color: var(--background-color);
+        color: var(--text-color);
+      }
+
+      a:link {
+        color: var(--link-color);
+      }
+
+      a:visited {
+        color: var(--link-color);
+      }
+
+      a:hover {
+        color: var(--link-color);
+      }
+
+      a:active {
+        color: var(--link-color);
       }
 
       h1 {
@@ -49,7 +66,11 @@
     <% when "image" %>
       <% if content_block.media_file.attached? %>
         <div class="content-block">
-          <%= image_tag content_block.media_file %>
+        <% if defined?(is_export) && is_export %>
+          <img src="assets/<%= content_block.media_file.filename %>" class="max-w-full h-auto align-top" alt="<%= content_block.position %>">
+        <% else %>
+          <%= image_tag content_block.media_file, class: "max-w-full h-auto align-top", alt: content_block.position %>
+        <% end %>
         </div>
       <% end %>
     <% when "audio" %>
