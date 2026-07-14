@@ -28,11 +28,7 @@ class UserLogInsTest < ApplicationSystemTestCase
 
     login.fill_log_in(@user.email_address, "pas")
 
-    take_screenshot
-
     login.log_in
-
-    take_screenshot
 
     assert_text "error: try another email address or password."
   end

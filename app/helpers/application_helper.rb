@@ -4,9 +4,7 @@ module ApplicationHelper
       return model.errors.first.message
     end
 
-    if flash[:alert].present?
-      return "#{flash[:alert]}"
-    elsif flash[:notice].present?
+    if flash[:notice].present?
       return "#{flash[:notice]}"
     end
 
