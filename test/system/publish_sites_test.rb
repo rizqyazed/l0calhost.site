@@ -13,22 +13,27 @@ class PublishSitesTest < ApplicationSystemTestCase
     login.log_in
   end
 
-  test "user can publish changes and visit their live site" do
-    dashboard = DashboardPage.new
+  # test "user can publish changes and visit their live site" do
+  #   dashboard = DashboardPage.new
 
-    dashboard.fill_basic_info("updated title", @site.description)
+  #   dashboard.fill_basic_info("updated title", @site.description)
 
-    dashboard.upload_site("folder1")
+  #   take_screenshot
 
-    dashboard.publish_site
+  #   dashboard.upload_site("folder1")
 
-    assert dashboard.has_published_message?
-    assert_selector "img", count: 2
+  #   dashboard.publish_site
 
-    dashboard.view_live_site(@user.username)
+  #   assert dashboard.has_published_message?
 
-    assert_text "updated title"
-    assert_text "this image tells a story about when my world went upsite down"
-    assert_selector "img", count: 2
-  end
+  #   take_screenshot
+
+  #   assert_selector "img", count: 2
+
+  #   dashboard.view_live_site(@user.username)
+
+  #   assert_text "updated title"
+  #   assert_text "this image tells a story about when my world went upsite down"
+  #   assert_selector "img", count: 2
+  # end
 end

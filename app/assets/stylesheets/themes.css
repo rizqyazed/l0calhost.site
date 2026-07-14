@@ -1,0 +1,25 @@
+.theme-classic {
+  --background-color: #ffffff;
+  --text-color: black;
+  --font-family: "Times New Roman", Times, serif;
+}
+
+.theme-modern {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+.theme-dark {
+  --text-color: #d3dad9;
+  --link-color: #715a5a;
+  --background-color: #37353e;
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+.theme-terminal {
+  --text-color: green;
+  --link-color: white;
+  --background-color: black;
+  --font-family: Arial, Helvetica, sans-serif;
+}

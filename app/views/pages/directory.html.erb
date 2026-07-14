@@ -1,17 +1,17 @@
 <% content_for :screen_text, "directory" %>
 
-<div data-controller="directory" class="flex flex-col text-center md:text-left md:flex-row">
-    <section class="flex flex-col gap-20 w-full md:w-[30%]">
+<div data-controller="directory" class="flex flex-col text-center md:text-left md:flex-row  md:h-[60%]">
+    <section class="scrollbar-none flex flex-col gap-20 w-full md:w-auto md:overflow-y-scroll">
     <% @users.each do |user| %>
         <%= link_to "#{user.username}.#{request.host_with_port}", root_url(subdomain: user.username), 
             data: {
             action: "mouseenter->directory#show mouseleave->directory#clear",
             directory_title_param: user.site&.title || "untitled Website",
-            directory_desc_param: user.site&.description || "this website has no description yet."
+            directory_desc_param: user.site&.description.to_s || "this website has no description yet."
         } %> 
     <% end %>
     </section>
-    <aside class="p-[1rem] w-[40%]">
+    <aside class="m-[5rem] ml-[10rem] p-[1rem] w-[40%]">
         <p data-directory-target="title"></p>
         <p data-directory-target="desc"></p>
     </aside>

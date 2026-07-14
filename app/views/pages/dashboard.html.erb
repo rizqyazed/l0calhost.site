@@ -1,37 +1,46 @@
 <% content_for :screen_text, "dashboard" %>
 
 <%= link_to "#{Current.user.username}.#{request.host_with_port}", root_url(subdomain: Current.user.username), class:"text-lg", id:"user-site" %>
-<section class="border p-[1rem] flex flex-col mt-2 h-[740px] justify-start md:flex-row gap-3 md:w-[740px] md:h-auto">
-    <%= form_with(model: @site, class:"md:flex-1 flex flex-col md:justify-between") do |form| %>
-      <div class="w-[75%] flex flex-col gap-4">
+<div data-controller="hello" class="flex flex-col md:flex-row">
+<section class="border p-[1rem] h-auto w-auto md:w-[740px]">
+    <%= form_with(model: @site, class:"flex flex-col justify-between w-full h-full") do |form| %>
+      <div class="flex flex-col w-full h-full md:flex-row">
+        <div class="flex flex-col gap-4 flex-1 min-w-0 [&>*]:flex [&>*]:flex-col [&>*]:gap-1">
           <div>
             <%= form.label :title, "site_title" %>
             <%= form.text_field :title %>
           </div>
           <div>
             <%= form.label :description, "site_summary" %>
-            <%= form.text_field :description %>
+            <div>
+              <%= form.rich_textarea :description, id:"rich_description"%>
+            </div>
           </div>
           <div>
-            <div class="flex flex-row items-center gap-2">
-              <%= form.label :folder_upload, "site_content"%>
-              <p class="m-0">[i]</p>
-            </div>
-              <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "border block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-white hover:file:bg-blue-100" %>
+            <%= form.label :layout_choice, "site_layout" %>
+            <%= form.select :layout_choice, Site::AVAILABLE_LAYOUTS.map { |l| [l.downcase, l] }, { selected: form.object.layout_choice } %>
           </div>
-      </div>
-      <div class="flex justify-between mt-[2rem]">
-        <%= link_to "export", root_path %>
-        <%= form.submit "publish"%>
-      </div>
-    <% end %>
-    <div class="overflow-y-scroll md:flex-1 md:h-[540px]">
+          <div>
+            <%= form.label :theme_choice, "site_theme" %>
+            <%= form.select :theme_choice, Site::AVAILABLE_THEMES.map { |l| [l.downcase, l] }, { selected: form.object.theme_choice } %>
+          </div>
+          <div class="h-[30%]">
+            <div class="flex flex-row items-center gap-2">
+                <%= form.label :folder_upload, "site_content"%>
+                <%= form.label :folder_upload, "[i]", data: {
+                  action: "mouseenter->hello#show mouseleave->hello#clear",
+                }%>
+            </div>
+            <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "border h-full block w-full text-center text-sm text-gray-500 file:flex file:flex-col file:border-0 file:bg-red file:m-auto file:my-6 file:font-serif hover:file:bg-blue-100" %>
+          </div>
+        </div>
+        <div class="overflow-y-scroll flex-1 md:h-[75%] mt-6 md:mt-0">
          <ol class="space-y-5">
             <% @content_blocks.each do |block| %>
               <li>
                 <% if block.media_file.attached? %>
                     <% if block.media_file.content_type.start_with?("image/") %>
-                        <%= image_tag block.media_file, class: "max-w-full h-auto align-top" %>
+                        <%= image_tag block.media_file, class: "max-w-full h-auto align-top", alt: block.position  %>
                     <% elsif block.media_file.content_type.start_with?("text/") %>
                       <div class="align-top prose border p-5">
                         <% safe_text = block.media_file.download.force_encoding('UTF-8').scrub  %>
@@ -44,5 +53,14 @@
               </li>
             <% end %>
          </ol> 
-     </div>
+        </div>
+      </div>
+      <div class="flex justify-between w-full mt-[2rem]">
+        <%= link_to "export", root_path %>
+        <%= form.submit "publish"%>
+      </div>
+    <% end %>
 </section>
+<aside data-hello-target="output" class="w-[7rem] h-[7rem] p-2">
+</aside>
+</div>

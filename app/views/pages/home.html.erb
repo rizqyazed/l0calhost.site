@@ -10,7 +10,7 @@
             <%= form.text_field :username, required: true,placeholder: "my-site-name", autocomplete: "username", 
               data: { 
                 action: "focus->friend#show blur->friend#clear",
-                friend_message_param: "your username will determine the url of your website! THIS CANT BE CHANGED LATER so be wise ;)"
+                friend_message_param: "your username will determine the url of your website!<br>THIS CANT BE CHANGED LATER so be wise ;)<br><br>only '-', letters and numbers are accepted!"
               } %>
             <p class="m-0">.l0calhost.site</p>
           </div>
@@ -44,6 +44,6 @@
     <% end %>
   </section>
   <aside class="p-[1rem] w-full md:w-[40%] shrink-0">
-    <p data-friend-target="output" class="text-lg">hello!<br>l0calhost.site is a lightweight site builder.<br> create an account and claim your corner of the internet!</p>
+    <p data-friend-target="output" class="text-lg">hello!<br>l0calhost.site is a lightweight site builder. create simple silly websites by just dropping in some files!<br><br>create an account and claim your corner of the internet!</p>
   </aside>
 </div>

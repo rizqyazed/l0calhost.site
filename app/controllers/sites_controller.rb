@@ -38,7 +38,7 @@ class SitesController < ApplicationController
   private
 
   def site_params
-       params.require(:site).permit(:title, :description, folder_upload: [])
+       params.require(:site).permit(:title, :description, :layout_choice, :theme_choice, :rich_desc, folder_upload: [])
   end
 
   def process_folder_upload(site, uploaded_files)
