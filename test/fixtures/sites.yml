@@ -3,6 +3,8 @@
 one:
   title: MyString
   description: MyText
+  theme_choice: classic
+  layout_choice: center
   user: one
 
 two:

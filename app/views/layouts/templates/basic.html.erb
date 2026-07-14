@@ -1,14 +1,14 @@
-<%# app/views/exports/portfolio.html.erb %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title><%= @site.title %></title>
-  <meta name="description" content="<%= @site.description %>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "themes", "data-turbo-track": "reload" %>
   <style>
       body {
         padding: 1rem;
-        font-family: sans-serif;
+        font-family: var(--font-family);
+        background-color: var(--background-color);
       }
 
       h1 {
@@ -34,7 +34,7 @@
       }
   </style>
 </head>
-<body>
+<body class="theme-<%= @site.theme_choice %>" data-layout="basic">
   <main>
   <h1><%= @site.title %></h1>
   <p class="summary"><%= @site.description %></p>
