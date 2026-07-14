@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     else
       @login_error = "error: try another email address or password."
 
-      render :new, status: :unprocessable_entity
+      render :new, status: :found
     end
   end
 
