@@ -42,22 +42,17 @@ class SitesController < ApplicationController
   end
 
   def process_folder_upload(site, uploaded_files)
-    # 1. Wipe the old site completely clean
     site.content_blocks.destroy_all
 
-   # 2. Filter out junk files (like Mac's invisible .DS_Store files)
    valid_files = uploaded_files.reject(&:blank?).reject do |file|
       file.original_filename.include?(".DS_Store")
     end
 
-    # 3. Sort files numerically (so 10.txt comes AFTER 2.png, not before it!)
     sorted_files = valid_files.sort_by do |file|
-      # file.original_filename looks like "my_folder/1.png"
       filename = file.original_filename.split("/").last
-      filename.to_i # Ruby is smart: "1.png".to_i becomes 1, "10.txt".to_i becomes 10!
+      filename.to_i
     end
 
-    # 4. Generate a block for each file
     sorted_files.each do |file|
       filename = file.original_filename.split("/").last
       extension = File.extname(filename).downcase
@@ -67,7 +62,6 @@ class SitesController < ApplicationController
       case extension
       when ".txt"
         block.block_type = "text"
-        # Physically read the text inside the file and save it as the body
         block.media_file.attach(file)
       when ".jpg", ".jpeg", ".png", ".gif"
         block.block_type = "image"
@@ -94,7 +88,6 @@ class SitesController < ApplicationController
         block.block_type = "video"
         block.media_file.attach(file)
       else
-        # If they upload a weird file type (.pdf, .zip), just skip it
         next
       end
 

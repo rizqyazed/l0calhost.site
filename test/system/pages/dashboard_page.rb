@@ -21,7 +21,9 @@ class DashboardPage
   end
 
   def view_live_site(username)
-    click_link "#{username}.lvh.me"
+    user_url = find_link(id: "user-site")[:href]
+
+    visit user_url
   end
 
   def has_published_message?
