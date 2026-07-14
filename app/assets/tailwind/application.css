@@ -24,7 +24,7 @@
   }
 
   button {
-    @apply underline text-sm text-blue-600 hover:text-blue-600 bg-transparent border-none p-0 cursor-pointer font-serif;
+    @apply inline align-baseline m-0 underline text-sm bg-transparent border-none p-0 cursor-pointer font-serif text-[#0000EE] hover:text-[#551A8B] active:text-[#FF0000];
   }
 
   /* You can target checkboxes and radios separately */
