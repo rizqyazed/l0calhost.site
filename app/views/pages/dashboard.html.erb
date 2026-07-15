@@ -12,9 +12,7 @@
           </div>
           <div>
             <%= form.label :description, "site_summary" %>
-            <div>
-              <%= form.rich_textarea :description, id:"rich_description", class:"h-[150px] overflow-y-scroll"%>
-            </div>
+            <%= form.rich_text_area :description, class:"h-[150px] overflow-y-scroll"%>
           </div>
           <div>
             <%= form.label :layout_choice, "site_layout" %>
@@ -27,7 +25,7 @@
           <div class="h-[30%]">
             <div class="flex flex-row items-center gap-2">
                 <%= form.label :folder_upload, "site_content"%>
-                <%= form.label :folder_upload, "[i]", data: {
+                <%= tag.span "[i]", data: {
                   action: "mouseenter->hello#show mouseleave->hello#clear",
                 }%>
             </div>
