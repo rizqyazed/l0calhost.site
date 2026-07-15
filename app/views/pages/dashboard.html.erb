@@ -13,7 +13,7 @@
           <div>
             <%= form.label :description, "site_summary" %>
             <div>
-              <%= form.rich_textarea :description, id:"rich_description"%>
+              <%= form.rich_textarea :description, id:"rich_description", class:"h-[150px] overflow-y-scroll"%>
             </div>
           </div>
           <div>
@@ -34,7 +34,7 @@
             <%= form.file_field :folder_upload, multiple: true, webkitdirectory: true, directory: true, class: "border h-full block w-full text-center text-sm text-gray-500 file:flex file:flex-col file:border-0 file:bg-red file:m-auto file:my-6 file:font-serif hover:file:bg-blue-100" %>
           </div>
         </div>
-        <div class="overflow-y-scroll flex-1 md:h-[75%] mt-6 md:mt-0">
+        <div class="overflow-y-scroll flex-1 md:h-[650px] mt-6 md:mt-0">
          <ol class="space-y-5">
             <% @content_blocks.each do |block| %>
               <li>
