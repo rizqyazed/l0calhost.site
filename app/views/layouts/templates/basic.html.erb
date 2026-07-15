@@ -56,7 +56,7 @@
   <main>
   <h1><%= @site.title %></h1>
   <p class="summary"><%= @site.description %></p>
-  <% @site.content_blocks.order(:position).each do |content_block| %>
+  <% @site.content_blocks.includes(media_file_attachment: :blob).order(:position).each do |content_block| %>
     <% case content_block.block_type %>
     <% when "text" %>
       <div class="content-block">

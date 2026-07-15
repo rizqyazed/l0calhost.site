@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @site = Current.user.site
-    @content_blocks = @site.content_blocks.order(:position)
+    @content_blocks = @site.content_blocks.includes(media_file_attachment: :blob).order(:position)
   end
 
   def directory
