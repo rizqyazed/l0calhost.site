@@ -12,6 +12,6 @@ class PagesController < ApplicationController
   end
 
   def directory
-    @users = User.all
+    @users = User.includes(site: :rich_text_description).all
   end
 end

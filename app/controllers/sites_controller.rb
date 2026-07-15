@@ -1,4 +1,6 @@
 class SitesController < ApplicationController
+  rate_limit to: 10, within: 3.minutes, only: :update, with: -> { redirect_to dashboard_path, alert: "try again later." }
+
    def create
       @site = Site.new(site_params)
       if @site.save
